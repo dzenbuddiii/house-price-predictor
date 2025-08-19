@@ -24,3 +24,13 @@ Directory structure inside the container should look like this
          preprocessor.pkl
 ```
 
+Usefull commands:
+```bash
+docker image history fastapi
+docker run -idtP fastapi
+
+docker logs CONTAINER_ID
+docker run --rm -it fastapi bash
+
+docker rm -f CONTAINER_ID
+```

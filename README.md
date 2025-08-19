@@ -148,7 +148,7 @@ Once you have launched both the apps, you should be able to access streamlit web
 You could also test predictions with FastAPI directly using 
 
 ```
-curl -X POST "http://localhost:8000/predict" \
+curl -X POST "http://localhost:55000/predict" \
 -H "Content-Type: application/json" \
 -d '{
   "sqft": 1500,
@@ -156,9 +156,21 @@ curl -X POST "http://localhost:8000/predict" \
   "bathrooms": 2,
   "location": "suburban",
   "year_built": 2000,
-  "condition": fair
+  "condition": "Fair"
 }'
 
+curl -X 'POST' \
+  'http://localhost:55000/predict' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "sqft": 100,
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "location": "string",
+  "year_built": 2023,
+  "condition": "string"
+}'
 ```
 
 Be sure to replace `http://localhost:8000/predict` with actual endpoint based on where its running. 
@@ -185,3 +197,10 @@ We welcome contributions, issues, and suggestions to make this project even bett
 
 Happy Learning!  
 — Team **School of DevOps**
+
+---
+```bash
+docker compose stop
+docker compose start
+docker compose down
+```
