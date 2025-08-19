@@ -1,0 +1,15 @@
+FROM python:3.11-slim-bookworm
+
+WORKDIR /app
+
+COPY app.py requirements.txt ./
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends gcc && \
+	pip install --upgrade pip && \
+	pip install --no-cache-dir -r requirements.txt && \
+	apt-get purge -y --auto-remove gcc && \
+	rm -rf /var/lib/apt/lists/*
+
+EXPOSE 8501
+
+CMD [ "streamlit", "run", "app.py", "--server.address=0.0.0.0" ]
